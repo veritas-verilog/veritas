@@ -4,12 +4,15 @@ extern crate serde_derive;
 extern crate git2;
 extern crate serde;
 extern crate serde_json;
+extern crate clap;
 
 use std::path::Path;
 use std::fs::File;
 use std::fs::create_dir_all;
 use std::error::Error;
 use git2::build::{ RepoBuilder };
+use clap::{Arg, App};
+
 /*
  * A dependency only needs a name, which is in the format "username/git-repo". The latest master
  * commit is fetched
@@ -68,10 +71,32 @@ fn get_dependencies(current_path: &str, package: &Dependency) {
 }
 
 fn main() {
-    let p = read_package_json(&"./package.json").unwrap();
-    let deps = p.dependencies.unwrap_or(Vec::new());
-    // repeat
-    for d in &deps {
-        get_dependencies(".", d);
+    let matches = App::new("Veritas")
+        .version("1.0")
+        .author("Tanishq Dubey <tanishq.dubey@gmail.com>")
+        .about("Veritas is a package manager for verilog projects")
+        .arg(Arg::with_name("COMMAND")
+             .help("The operation Veritas should perform")
+             .possible_values(&["init", "install", "update"])
+             .required(true))
+        .get_matches();
+
+    match matches.value_of("COMMAND").unwrap() {
+        "init" => {
+            println!("Not Implemented yet...")
+        },
+        "install" => {
+            let p = read_package_json(&"./package.json").unwrap();
+            let deps = p.dependencies.unwrap_or(Vec::new());
+            // repeat
+            for d in &deps {
+                get_dependencies(".", d);
+            }
+        },
+        "update" => {
+            println!("Not Implemented yet...")
+        },
+        _ => unreachable!()
     }
+
 }
