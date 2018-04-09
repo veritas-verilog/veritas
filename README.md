@@ -89,3 +89,6 @@ To update all dependencies (if they are not locked to a commit) simply run `veri
  - Create Project
  - Update Dependencies
  - Specify branch or commit to clone
+
+## Example
+An example project with dependencies can be found here: https://github.com/veritas-verilog/four_bit_adder

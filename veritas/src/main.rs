@@ -70,6 +70,13 @@ fn get_dependencies(current_path: &str, package: &Dependency) {
     }
 }
 
+/*
+ * Create a project in the current directory
+ */
+fn init_project() {
+
+}
+
 fn main() {
     let matches = App::new("Veritas")
         .version("1.0")
