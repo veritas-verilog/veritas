@@ -5,7 +5,7 @@ Veritas is designed to decrease confusion in your verilog workflow, and to simpl
 
 ## Getting Started
 
-### Create a project (TODO)
+### Create a project
 Simply run `veritas init` and follow the oncsreen prompts to create a veritas verilog project. This will create a project tree like this:
 ```
 .
@@ -86,7 +86,7 @@ To update all dependencies (if they are not locked to a commit) simply run `veri
 
 
 ## Current Work
- - Create Project
+ - Create Project ✅
  - Update Dependencies
  - Specify branch or commit to clone
 
