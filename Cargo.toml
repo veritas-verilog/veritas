@@ -7,6 +7,10 @@ authors = ["Tanishq Dubey <tanishq.dubey@gmail.com>"]
 git2 = "0.6.8"
 serde = "1.0"
 serde_derive = "1.0"
-serde_json = "1.0"
 clap = "2.31"
+toml = "0.4.6"
 colored = "1.6"
+
+[dependencies.semver]
+version = "0.9"
+features = ["serde"]
