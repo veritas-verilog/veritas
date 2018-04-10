@@ -28,63 +28,38 @@ Dependencies in Veritas are simply git repositories for other veritas projects. 
 
 Dependencies are installed using the `veritas install` command
 
-Dependencies are managed through your `package.json` file, which has a structure like this:
-```
-{
-  "name": "my_project",
-  "version": "1.0.0",
-  "description": "A example project json",
-  "dependencies": [
-      {
-          "name": "some_git_user/some_git_repo"
-      }
-  ],
-  "author": "You go here",
-  "license": "Some license"
-}
+Dependencies are managed through your `modules.toml` file, which has a structure like this:
+```toml
+[package]
+name = 'example'
+version = '0.1.0'
+description = 'An example project'
+author = 'your name here <your email here>'
+license = 'your choice of license'
 
+[repository]
+url = 'source code repo url'
+version_control = 'version control type'
+
+[dependencies]
+"my_first_dependency" = "required version"
 ```
-Dependencies are managed under the `dependencies` tag, where each dependency is a JSON object, thus, for a project with multiple dependencies, you will have:
-```
-"dependencies": [
-      {
-          "name": "some_git_user/some_git_repo"
-      },
-      {
-          "name": "some_git_user/some_other_git_repo"
-      },
-      ...
-  ],
+Dependencies are managed under the `dependencies` tag, where each dependency is a key value pair, thus, for a project with multiple dependencies, you will have:
+```toml
+[dependencies]
+"my_first_dependency" = "required version"
+"my_second_dependency" = "required version"
 ```
 
-If your project has no dependencies, a `dependencies` array must still be provided, even if it is empty. 
+If your project has no dependencies, a `dependencies` you can leave the area empty but do not remove the section. 
 
-Dependencies are then created in a `veri_modules` directory, and can be used in your verilog project through the `include` keyword as such:
+Dependencies are then created in a `veritas_modules` directory, and can be used in your verilog project through the `include` keyword as such:
 ```
-`include "veri_modules/some_module/some_module.v"
+`include "veritas_modules/some_module/some_module.v"
 ```
 
-#### Getting dependencies from specifc branches or commits (TODO)
-Sometimes it is useful to get a specific branch of a dependency or clone a dependency at a specific commit. This can be done by specifiying the option in the `package.json` as follows:
-```
-"dependencies": [
-      {
-          "name": "some_git_user/some_git_repo",
-          "commit": "97dc64341640deff370e5ffa13382f42bf303b51"
-      },
-      {
-          "name": "some_git_user/some_other_git_repo"
-          "branch": "dev"
-      },
-      {
-          "name": "some_git_user/some_other_git_repo"
-          "commit": "97dc64341640deff370asdfw33382f42bf303b51"
-          "branch": "dev-testing"
-      },
-      ...
-  ],
-```
-You can specify, branch, commit (by hash), or both, and veritas will handle the rest. When specifying a commit, it should be noted that veritas will lock that dependency to that commit, and not update it.
+#### Getting dependencies 
+While right now veritas assumes a git repo hosted on github, in the future there will be a module registry containing the metadata and blobs of modules. When that transition happens the namespacing of modules will depend on the layout of the registry not github username and repo name 
 
 #### Other notes
 It should be noted that when you install dependencies, existing dependencies are not updated when new installs are done.
@@ -96,7 +71,12 @@ To update all dependencies (if they are not locked to a commit) simply run `veri
 ## Current Work
  - Create Project ✅
  - Update Dependencies
- - Specify branch or commit to clone
+ - Module Registry and Explorer 
+ - Adding of dependencies from the CLI 
+ - Cycle detection
+ - Dependecy resolution
+ - Build step (flat packing verilog code for compilation)
+ - Module upload 
 
 ## Example
 An example project with dependencies can be found here: https://github.com/veritas-verilog/four_bit_adder
