@@ -3,6 +3,14 @@ A Package Manager for Verilog Projects
 
 Veritas is designed to decrease confusion in your verilog workflow, and to simplify dependency management in hardware deisgn.
 
+## Installing
+
+### Requirements
+You must have Rust installed along with Cargo to install Veritas
+
+### Install
+To install, simply go into the `veritas` directory and run `cargo install`
+
 ## Getting Started
 
 ### Create a project
