@@ -18,7 +18,7 @@ Simply run `veritas init` and follow the oncsreen prompts to create a veritas ve
 ```
 .
 ├── my_verilog.v
-└── package.json
+└── modules.toml
 
 ```
 Where `my_verilog.v` is your existing verilog code.
